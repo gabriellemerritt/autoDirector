@@ -103,6 +103,32 @@ public class StatefulRequestInfoFactory extends DefaultRequestInfoFactory {
 
         // add as many more client match entries as you like...
 
+//        ClientMatch leftCmd = new ClientMatch();
+//        leftCmd.setExpression("([1/100 (\"turn\"|\"go\"|\"drive\")].\"left\".[1/20 \"for\".\"me\"].[1/20 \"please\"]) ");
+////
+////        ClientMatch rightCmd = new ClientMatch();
+////        rightCmd.setExpression("([1/100 (\"can\").\"you\"].(\"turn\"|\"go\"|(1/100 \"drive\")).\"right\".[1/20 \"for\".\"me\"].[1/20 \"please\"]) ");
+////
+//        leftCmd.setWrittenResponse("Ok going left!");
+////        rightCmd.setWrittenResponse("Ok going right!");
+////
+////        // Create JsonNode
+////        final JsonNodeFactory nodeFactory = JsonNodeFactory.instance;
+////
+//        ObjectNode leftCmdNode = nodeFactory.objectNode();
+////        ObjectNode rightCmdNode = nodeFactory.objectNode();
+////
+//        leftCmdNode.put("Intent", "TURN_LEFT");
+//        leftCmd.setResult(leftCmdNode);
+////
+////        rightCmdNode.put("Intent", "TURN_RIGHT");
+////        rightCmd.setResult(rightCmdNode);
+////
+////        //  add first client match data to the array/list
+//        clientMatchList.add(leftCmd);
+//        clientMatchList.add(rightCmd);
+
+
 
         // add the list of matches to the request info object
         requestInfo.setClientMatches(clientMatchList);

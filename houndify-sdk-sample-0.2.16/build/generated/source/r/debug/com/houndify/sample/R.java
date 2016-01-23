@@ -137,17 +137,18 @@ containing a value of this type.
         public static final int houndify_button=0x7f02000c;
     }
     public static final class id {
-        public static final int button=0x7f0b0001;
-        public static final int content_root=0x7f0b0002;
-        public static final int iv_abort_search=0x7f0b0007;
-        public static final int pulse_view=0x7f0b0009;
-        public static final int search_button=0x7f0b000a;
-        public static final int search_content_area=0x7f0b0003;
-        public static final int search_panel=0x7f0b0008;
-        public static final int search_text_area=0x7f0b0004;
+        public static final int button=0x7f0b0002;
+        public static final int content_root=0x7f0b0003;
+        public static final int iv_abort_search=0x7f0b0008;
+        public static final int msgText=0x7f0b0001;
+        public static final int pulse_view=0x7f0b000a;
+        public static final int search_button=0x7f0b000b;
+        public static final int search_content_area=0x7f0b0004;
+        public static final int search_panel=0x7f0b0009;
+        public static final int search_text_area=0x7f0b0005;
         public static final int textView=0x7f0b0000;
-        public static final int tv_live_transcription=0x7f0b0006;
-        public static final int tv_search_status=0x7f0b0005;
+        public static final int tv_live_transcription=0x7f0b0007;
+        public static final int tv_search_status=0x7f0b0006;
     }
     public static final class layout {
         public static final int activity_main=0x7f040000;
