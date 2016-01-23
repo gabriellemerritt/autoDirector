@@ -57,7 +57,7 @@ public class StatefulRequestInfoFactory extends DefaultRequestInfoFactory {
          * other variations on these phases.
          */
 
-        /** Uncomment for Client Match demo --------------------------------------------
+        // Uncomment for Client Match demo --------------------------------------------
         ArrayList<ClientMatch> clientMatchList = new ArrayList<>();
 
         // client match 1
@@ -106,7 +106,7 @@ public class StatefulRequestInfoFactory extends DefaultRequestInfoFactory {
 
         // add the list of matches to the request info object
         requestInfo.setClientMatches(clientMatchList);
-        ------------------------------------end of Client Match demo code */
+        //------------------------------------end of Client Match demo code
 
         return requestInfo;
     }

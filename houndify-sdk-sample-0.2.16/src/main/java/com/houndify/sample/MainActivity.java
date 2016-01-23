@@ -30,6 +30,7 @@ public class MainActivity extends Activity  {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
+
         // The activity_main layout contains the com.hound.android.fd.HoundifyButton which is displayed
         // as the black microphone. When press it will load the HoundifyVoiceSearchActivity.
         setContentView( R.layout.activity_main );
