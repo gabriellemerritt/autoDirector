@@ -302,11 +302,11 @@ public class MainActivity extends Activity  {
                         sendMessage(msg_data);
 
                     }
-//                    else if ( intentValue.equals("TURN_LEFT") ) {
-//                        float[] msg_data = {1.1f,1.1f,1.1f,1.2f,1.3f,1.0f};
-//                        sendMessage(msg_data);
-//
-//                    }
+                    else if ( intentValue.equals("TURN_LEFT") ) {
+                        float[] msg_data = {1.1f,1.1f,1.1f,1.2f,1.3f,1.0f};
+                        sendMessage(msg_data);
+
+                    }
                 }
             }
         }
