@@ -11,11 +11,16 @@ import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbEndpoint;
 import android.hardware.usb.UsbInterface;
 import android.hardware.usb.UsbManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -27,8 +32,15 @@ import com.hound.android.sdk.audio.SimpleAudioByteStreamSource;
 import com.hound.core.model.sdk.CommandResult;
 import com.hound.core.model.sdk.HoundResponse;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.URI;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -38,19 +50,25 @@ import java.util.Locale;
 public class MainActivity extends Activity  {
     private TextView textView;
     private TextView msgText;
+    private TextView msgText2;
+
     private PhraseSpotterReader phraseSpotterReader;
     private Handler mainThreadHandler = new Handler(Looper.getMainLooper());
     TextToSpeechMgr textToSpeechMgr;
-//    private static final String ACTION_USB_PERMISSION =
-//            "com.android.example.USB_PERMISSION";
-//    private static final int INTERFACE = 1;
-//    private static final int ENDPOINT = 0;
-//    private static final boolean USE_FORCE = true;
-//    private UsbManager manager;
-//    private UsbInterface inter;
-//    private UsbEndpoint end;
-//    private UsbDeviceConnection connection;
-//    private boolean gotPermission = false;
+
+    private static final String TAG = "Main Activity";
+    private MjpegView mv;
+
+    private static final String ACTION_USB_PERMISSION =
+            "com.android.example.USB_PERMISSION";
+    private static final int INTERFACE = 1;
+    private static final int ENDPOINT = 0;
+    private static final boolean USE_FORCE = true;
+    private UsbManager manager;
+    private UsbInterface inter;
+    private UsbEndpoint end;
+    private UsbDeviceConnection connection;
+    private boolean gotPermission = false;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -58,28 +76,57 @@ public class MainActivity extends Activity  {
 
         // The activity_main layout contains the com.hound.android.fd.HoundifyButton which is displayed
         // as the black microphone. When press it will load the HoundifyVoiceSearchActivity.
-        setContentView( R.layout.activity_main );
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        setContentView( R.layout.activity_main );
         // Text view for displaying written result
         textView = (TextView)findViewById(R.id.textView);
         msgText = (TextView)findViewById(R.id.msgText);
+        msgText2 = (TextView)findViewById(R.id.msgText2);
+
         // Setup TextToSpeech
         textToSpeechMgr = new TextToSpeechMgr( this );
 
         // Normally you'd only have to do this once in your Application#onCreate
-        Houndify.get(this).setClientId( Constants.CLIENT_ID );
+        Houndify.get(this).setClientId(Constants.CLIENT_ID);
         Houndify.get(this).setClientKey(Constants.CLIENT_KEY);
         Houndify.get(this).setRequestInfoFactory(StatefulRequestInfoFactory.get(this));
 
         String s = "USB devices:\n";
 
-//        manager = (UsbManager) getSystemService(Context.USB_SERVICE);
-//        PendingIntent mPermissionIntent = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_USB_PERMISSION), 0);
-//        IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
-//        registerReceiver(mUsbReceiver, filter);
-//
-//        HashMap<String, UsbDevice> deviceList = manager.getDeviceList();
-//        Iterator<UsbDevice> deviceIterator = deviceList.values().iterator();
+        /**
+         * ip streaming
+          */
+
+        String URL = "http://158.130.109.221:8080/video";
+//        String URL = "http://158.130.110.0:8080/video";
+
+        mv = (MjpegView) findViewById(R.id.mv);
+        new DoRead().execute(URL);
+        /**
+         * usb sending
+         */
+
+        manager = (UsbManager) getSystemService(Context.USB_SERVICE);
+        PendingIntent mPermissionIntent = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_USB_PERMISSION), 0);
+        IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
+        registerReceiver(mUsbReceiver, filter);
+
+        HashMap<String, UsbDevice> deviceList = manager.getDeviceList();
+        Iterator<UsbDevice> deviceIterator = deviceList.values().iterator();
+
+        if (deviceIterator.hasNext()){
+            UsbDevice device  = deviceIterator.next();
+            manager.requestPermission(device, mPermissionIntent);
+            s += device.toString() + "\n";
+            s += "num usbInterfaces: " + String.valueOf(device.getInterfaceCount()) + "\n";
+            msgText2.setText(s);
+        }
+        else {
+            msgText2.setText("There is nothing connected");
+        }
     }
 
     @Override
@@ -105,6 +152,42 @@ public class MainActivity extends Activity  {
         // if we don't, we must still be listening for "ok hound" so teardown the phrase spotter
         if ( phraseSpotterReader != null ) {
             stopPhraseSpotting();
+        }
+
+    }
+    public class DoRead extends AsyncTask<String, Void, MjpegInputStream> {
+        protected MjpegInputStream doInBackground(String... url) {
+            //TODO: if camera has authentication deal with it and don't just not work
+            HttpResponse res = null;
+            DefaultHttpClient httpclient = new DefaultHttpClient();
+            Log.d(TAG, "1. Sending http request");
+            try {
+                res = httpclient.execute(new HttpGet(URI.create(url[0])));
+                Log.d(TAG, "2. Request finished, status = " + res.getStatusLine().getStatusCode());
+                if(res.getStatusLine().getStatusCode()==401){
+                    //You must turn off camera User Access Control before this will work
+                    return null;
+                }
+                return new MjpegInputStream(res.getEntity().getContent());
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+                Log.d(TAG, "Request failed-ClientProtocolException", e);
+                //Error connecting to camera
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.d(TAG, "Request failed-IOException", e);
+                //Error connecting to camera
+            }
+
+            return null;
+        }
+
+        protected void onPostExecute(MjpegInputStream result) {
+            mv.setSource(result);
+            mv.setDisplayMode(MjpegView.SIZE_BEST_FIT);
+//            mv.setDisplayMode(R.layout.main);
+
+            mv.showFps(true);
         }
     }
 
@@ -171,30 +254,30 @@ public class MainActivity extends Activity  {
     /**
      * Send Message via USB for now
      */
-//    private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
-//        public void onReceive(Context context, Intent intent) {
-//            String action = intent.getAction();
-//            if (ACTION_USB_PERMISSION.equals(action)) {
-//                synchronized (this) {
-//                    UsbDevice device = (UsbDevice)intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
-//
-//                    if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)) {
-//                        if(device != null){
-//                            inter = device.getInterface(INTERFACE);
-//                            end = inter.getEndpoint(ENDPOINT);
-//                            connection = manager.openDevice(device);
-//                            connection.claimInterface(inter, USE_FORCE);
-//                        }
-//                        gotPermission = true;
-//                    }
-//                    else {
-//                        Log.d("PERMISSIONS", "permission denied for device " + device);
-//                        ((TextView)findViewById(R.id.textView)).setText("permission denied");
-//                    }
-//                }
-//            }
-//        }
-//    };
+    private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (ACTION_USB_PERMISSION.equals(action)) {
+                synchronized (this) {
+                    UsbDevice device = (UsbDevice)intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
+
+                    if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)) {
+                        if(device != null){
+                            inter = device.getInterface(INTERFACE);
+                            end = inter.getEndpoint(ENDPOINT);
+                            connection = manager.openDevice(device);
+                            connection.claimInterface(inter, USE_FORCE);
+                        }
+                        gotPermission = true;
+                    }
+                    else {
+                        Log.d("PERMISSIONS", "permission denied for device " + device);
+                        ((TextView)findViewById(R.id.msgText)).setText("permission denied");
+                    }
+                }
+            }
+        }
+    };
     static int crc16(final byte[] buffer) {
         int crc = 0xFFFF;
 
@@ -230,7 +313,7 @@ public class MainActivity extends Activity  {
 
         // return trpy (type = char 't')
         message[0] = 0x55;  // starting bytes
-        message[1] = 12;    // length of data
+        message[1] = 24;    // length of data
         message[2] = 0x70;  // type
         int message_index = 3;
         for( float var : data){
@@ -248,18 +331,15 @@ public class MainActivity extends Activity  {
         message[27] = (byte)(crc & 0xff);
         message[28] = (byte)((crc >> 8) & 0xff);
 
-//        TextView text = (TextView)findViewById(R.id.text);
         msgText.setText("message :" +Arrays.toString(message));
-//        msgText.setText("message : testing");
 
-//        new Thread(new Runnable() {
-//            public void run() {
-//                connection.bulkTransfer(end, message, message.length, 1000);
-//            }
-//        }).start();
+        new Thread(new Runnable() {
+            public void run() {
+                connection.bulkTransfer(end, message, message.length, 1000);
+            }
+        }).start();
 
     }
-
 
     /**
      * Called from onActivityResult() above
