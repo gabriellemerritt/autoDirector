@@ -70,14 +70,14 @@ repositories {
 }
 
 dependencies {
-    compile ('hound.android:hound-sdk:0.2.15@aar'){
-        transitive=true
+    compile('hound.android:hound-sdk:0.2.15@aar') {
+        transitive = true
     }
-
-    compile ('hound.android:phrasespotter:1.4.0'){
-        transitive=true
+    compile('hound.android:phrasespotter:1.4.0') {
+        transitive = true
     }
     // compile 'hound.android:phrasespotter:1.1.0'
+    compile files('libs/usbserial.jar')
 }
 
 task packageAll (type: Zip) {
