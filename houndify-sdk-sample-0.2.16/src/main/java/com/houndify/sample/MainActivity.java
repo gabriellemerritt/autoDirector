@@ -22,6 +22,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.TextView;
+import java.lang.Math;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.hound.android.fd.HoundSearchResult;
@@ -48,9 +49,15 @@ import java.util.Iterator;
 import java.util.Locale;
 
 public class MainActivity extends Activity  {
+    private static final float PI = 3.1415926f;
     private TextView textView;
     private TextView msgText;
     private TextView msgText2;
+    private  float pan_rad = PI/2.0f;
+    private  float tilt_rad = 0.0f;
+    private  float lin_pos = 0.0f;  //0 - 125 radians  or 0 - .8meters
+    private  float slow_vel = 0.75f; // rad /second
+    private  float lin_slow_vel = 7.0f;
 
     private PhraseSpotterReader phraseSpotterReader;
     private Handler mainThreadHandler = new Handler(Looper.getMainLooper());
@@ -96,15 +103,15 @@ public class MainActivity extends Activity  {
 
         String s = "USB devices:\n";
 
+
         /**
          * ip streaming
           */
 
-        String URL = "http://158.130.109.221:8080/video";
+//        String URL = "http://158.130.109.221:8080/video";
 //        String URL = "http://158.130.110.0:8080/video";
+         String URL = "http://158.130.109.54:8080/video";
 
-        mv = (MjpegView) findViewById(R.id.mv);
-        new DoRead().execute(URL);
         /**
          * usb sending
          */
@@ -127,6 +134,10 @@ public class MainActivity extends Activity  {
         else {
             msgText2.setText("There is nothing connected");
         }
+
+        mv = (MjpegView) findViewById(R.id.mv);
+        new DoRead().execute(URL);
+
     }
 
     @Override
@@ -292,29 +303,11 @@ public class MainActivity extends Activity  {
         return crc;
     }
 //  truck position, truck velocity, pan, pan velocity, tilt, tilt velocity
-    public void sendMessage(float[] data){
-       final byte[] message = new byte[29];
-//        short[] trpy = {thrust, roll, pitch, yaw, currentYaw};
-
-
-        // 85 85 02 10 19 00 73 248
-        // 55 55 02 0a 13 00 49 F8
-
-        //gains (type=0x67)
-        // kp(int16) kd(int16) kpyaw(int16) kdyaw(int16)
-        // meat: 700 100 300 150
-        // pwm ticks per radian
-        // pwm ticks per radian per second
-
-        // trpy (type=0x70)
-        // thrust(int16) roll(int16) pitch(int16) yaw(int16) currentyaw(int16)
-        // enablemotors(uint8) = 1 or 0, need to disable then enable if quadrotor went >60 degrees
-        // usexternalyaw(unti8) = 0 (unless vicon)
-
-        // return trpy (type = char 't')
+    public void sendMessage(byte msgtype, float[] data){
+        final byte[] message = new byte[13];
         message[0] = 0x55;  // starting bytes
-        message[1] = 24;    // length of data
-        message[2] = 0x70;  // type
+        message[1] = 8;    // length of data
+        message[2] = msgtype;  // type
         int message_index = 3;
         for( float var : data){
 //            message[message_index+1] = (byte)((var >> 8) & 0xff);
@@ -322,14 +315,14 @@ public class MainActivity extends Activity  {
 //            message_index+=2;
             byte[] float_bytes= ByteBuffer.allocate(4).putFloat(var).array();
             for (int i = 0; i< 4; i ++) {
-                message[message_index+i] = float_bytes[i];
+                message[message_index+i] = float_bytes[3-i];
             }
             message_index = message_index + 4;
         }
 
-        short crc = (short)crc16(Arrays.copyOfRange(message, 1, 27));
-        message[27] = (byte)(crc & 0xff);
-        message[28] = (byte)((crc >> 8) & 0xff);
+        short crc = (short)crc16(Arrays.copyOfRange(message, 1, 11));
+        message[11] = (byte)(crc & 0xff);
+        message[12] = (byte)((crc >> 8) & 0xff);
 
         msgText.setText("message :" +Arrays.toString(message));
 
@@ -370,23 +363,99 @@ public class MainActivity extends Activity  {
                     JsonNode matchedItemNode = commandResult.getJsonNode().findValue("MatchedItem");
                     String intentValue = matchedItemNode.findValue( "Intent").textValue();
 
-                    if ( intentValue.equals("TURN_LIGHT_ON") ) {
-//                        textToSpeechMgr.speak("Client match TURN LIGHT ON successful");
-                        float[] msg_data = {1.5f,0,10,22,33.4f, 99.2f};
-                        sendMessage(msg_data);
+                    if ( intentValue.equals("MOVE_LEFT") ) {
+                        if( lin_pos >40.0f) {
+                            lin_pos  = lin_pos - 40.0f; //rads  0- 125
+                        }
+                        msgText2.setText(Float.toString(lin_pos));
+
+                        float[] msg_data_96 = {lin_slow_vel, lin_pos}; //linear
+                        float[] msg_data_97 = {slow_vel, tilt_rad}; //pan
+                        float[] msg_data_98 = {slow_vel, pan_rad}; //tilt
+                        sendMessage((byte)170, msg_data_96); //linear
+//                        sendMessage((byte)171, msg_data_97); //pan
+//                        sendMessage((byte)172, msg_data_98); //tilt
 
                     }
-                    else if ( intentValue.equals("TURN_LIGHT_OFF") ) {
-//                        textToSpeechMgr.speak("Client match TURN LIGHT OFF successful");
-                        float[] msg_data = {1.5f,0,0,0,2,5};
-                        sendMessage(msg_data);
+                    else if( intentValue.equals("MOVE_RIGHT") ) {
+                        if( lin_pos+40.0f <110.0f) {
+                            lin_pos  = lin_pos +40.0f; //rads  0- 125
+                        }
+                        msgText2.setText(Float.toString(lin_pos));
+                        float[] msg_data_96 = {lin_slow_vel, lin_pos}; //linear
+                        float[] msg_data_97 = {slow_vel, tilt_rad}; //pan
+                        float[] msg_data_98 = {slow_vel, pan_rad}; //tilt
+                        sendMessage((byte)170, msg_data_96); //linear
+//                        sendMessage((byte)171, msg_data_97); //pan
+//                        sendMessage((byte)172, msg_data_98); //tilt
 
                     }
-                    else if ( intentValue.equals("TURN_LEFT") ) {
-                        float[] msg_data = {1.1f,1.1f,1.1f,1.2f,1.3f,1.0f};
-                        sendMessage(msg_data);
+                    else if( intentValue.equals("PAN_CCW") ) {
+                        if (pan_rad+0.25f*PI < PI/2.0f) {
+                            pan_rad = pan_rad + (0.25f * PI); //45 degrees
+                        }
+                        msgText2.setText(Float.toString(pan_rad));
+
+                        float[] msg_data_96 = {lin_slow_vel, lin_pos}; //linear
+                        float[] msg_data_97 = {slow_vel, tilt_rad}; //pan
+                        float[] msg_data_98 = {slow_vel, pan_rad}; //tilt
+//                        sendMessage((byte)170, msg_data_96); //linear
+                        sendMessage((byte)172, msg_data_97); //pan
+//                        sendMessage((byte)172, msg_data_98); //tilt
 
                     }
+                    else if( intentValue.equals("PAN_CW") ) {
+                        if (pan_rad-(0.25f*PI) > -PI/2.0f) {
+                            pan_rad = pan_rad - (0.25f * PI); //45 degrees
+                        }
+                        msgText2.setText(Float.toString(pan_rad));
+                        float[] msg_data_96 = {lin_slow_vel, lin_pos}; //linear
+                        float[] msg_data_97 = {slow_vel, tilt_rad}; //pan
+                        float[] msg_data_98 = {slow_vel, pan_rad}; //tilt
+//                        sendMessage((byte)170, msg_data_96); //linear
+                        sendMessage((byte)172, msg_data_97); //pan
+//                        sendMessage((byte)172, msg_data_98); //tilt
+
+                    }
+                    else if( intentValue.equals("TILT_UP") ) {
+                        if ((tilt_rad + 0.25f*PI) < PI  ){
+                            tilt_rad = tilt_rad + (0.25f * PI); //45 degrees
+                        }
+                        msgText2.setText(Float.toString(tilt_rad));
+
+                        float[] msg_data_96 = {lin_slow_vel, lin_pos}; //linear
+                        float[] msg_data_97 = {slow_vel, tilt_rad}; //pan
+                        float[] msg_data_98 = {slow_vel, pan_rad}; //tilt
+//                        sendMessage((byte)170, msg_data_96); //linear
+//                        sendMessage((byte)171, msg_data_97); //pan
+                        sendMessage((byte)171, msg_data_98); //tilt
+
+                    }
+                    else if( intentValue.equals("TILT_DOWN") ) {
+                        if ((tilt_rad - 0.25f*PI) > 0.0f) {
+                            tilt_rad = tilt_rad - (0.25f * PI); //45 degrees
+                        }
+                        msgText2.setText(Float.toString(tilt_rad));
+
+                        float[] msg_data_96 = {lin_slow_vel, lin_pos}; //linear
+                        float[] msg_data_97 = {slow_vel, tilt_rad}; //pan
+                        float[] msg_data_98 = {slow_vel, pan_rad}; //tilt
+//                        sendMessage((byte)170, msg_data_96); //linear
+//                        sendMessage((byte)171, msg_data_97); //pan
+                        sendMessage((byte)171, msg_data_98); //tilt
+
+                    }
+
+                    else if( intentValue.equals("STOP") ) {
+
+                        float[] msg_data_96 = {0.0f, lin_pos}; //linear
+                        float[] msg_data_97 = {0.0f, tilt_rad}; //pan
+                        float[] msg_data_98 = {0.0f, pan_rad}; //tilt
+                        sendMessage((byte) 170, msg_data_96); //linear
+                        sendMessage((byte) 171, msg_data_97); //pan
+                        sendMessage((byte) 172, msg_data_98); //tilt
+                    }
+
                 }
             }
         }
@@ -422,6 +491,16 @@ public class MainActivity extends Activity  {
     /**
      * Helper class used for managing the TextToSpeech engine
      */
+    public void onEstop(View v)
+    {
+        float[] msg_data_96 = {0.0f, lin_pos}; //linear
+        float[] msg_data_97 = {0.0f, tilt_rad}; //pan
+        float[] msg_data_98 = {0.0f, pan_rad}; //tilt
+        sendMessage((byte) 170, msg_data_96); //linear
+        sendMessage((byte) 171, msg_data_97); //pan
+        sendMessage((byte) 172, msg_data_98); //tilt
+        msgText2.setText("STOPPING NOW!");
+    }
     class TextToSpeechMgr implements TextToSpeech.OnInitListener {
         private TextToSpeech textToSpeech;
 

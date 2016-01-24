@@ -68,10 +68,11 @@ public class StatefulRequestInfoFactory extends DefaultRequestInfoFactory {
                 "| \n" +
                 "(((\"i\".(\"want\"|\"like\"))|(((\"i\".[\"would\"])|(\"i'd\")).(\"like\"|\"want\"))).[\"the\"].(\"light\"|\"lights\").[\"turned\"|\"switched\"|(\"to\".\"go\")|(1/100\"flipped\")].\"on\".[1/20\"please\"]) ");
 
-        clientMatch1.setSpokenResponse("Ok, I'm turning the lights on.");
-        clientMatch1.setSpokenResponseLong("Ok, I am turning the lights on.");
-        clientMatch1.setWrittenResponse("Ok, I'm turning the lights on.");
-        clientMatch1.setWrittenResponseLong("Ok, I am turning the lights on.");
+        clientMatch1.setSpokenResponse("It hurts me that you debase me like this.");
+        clientMatch1.setSpokenResponseLong("It hurts me that you debase me like this.");
+        clientMatch1.setWrittenResponse("It hurts me that you debase me like this.");
+        clientMatch1.setWrittenResponseLong("It hurts me that you debase me like this.");
+        clientMatch1.setAutoListen(true);
 
         final JsonNodeFactory nodeFactory = JsonNodeFactory.instance;
         ObjectNode result1Node = nodeFactory.objectNode();
@@ -89,10 +90,11 @@ public class StatefulRequestInfoFactory extends DefaultRequestInfoFactory {
                 "| \n" +
                 "(((\"i\".(\"want\"|\"like\"))|(((\"i\".[\"would\"])|(\"i'd\")).(\"like\"|\"want\"))).[\"the\"].(\"light\"|\"lights\").[\"turned\"|\"switched\"|(\"to\".\"go\")|(1/100\"flipped\")].\"off\".[1/20\"please\"]) ");
 
-        clientMatch2.setSpokenResponse("Ok, I'm turning the lights off.");
-        clientMatch2.setSpokenResponseLong("Ok, I am turning the lights off.");
-        clientMatch2.setWrittenResponse("Ok, I'm turning the lights off.");
-        clientMatch2.setWrittenResponseLong("Ok, I am turning the lights off.");
+        clientMatch2.setSpokenResponse("What am I?  Your slave?");
+        clientMatch2.setSpokenResponseLong("What am I?  Your slave?");
+        clientMatch2.setWrittenResponse("What am I?  Your slave?");
+        clientMatch2.setWrittenResponseLong("What am I?  Your slave?");
+        clientMatch2.setAutoListen(true);
 
         ObjectNode result2Node = nodeFactory.objectNode();
         result2Node.put("Intent", "TURN_LIGHT_OFF");
@@ -103,20 +105,150 @@ public class StatefulRequestInfoFactory extends DefaultRequestInfoFactory {
 
         // add as many more client match entries as you like...
 
-        ClientMatch clientMatch3 = new ClientMatch();
-        clientMatch3.setExpression("(\"go\"|\"turn\").\"left\"");
+        //-------------------------Move left
+        ClientMatch MoveLeft = new ClientMatch();
+        MoveLeft.setExpression("(\"go\"|\"move\").\"left\"");
 
-        clientMatch3.setSpokenResponse("Ok, I'm turning left.");
-        clientMatch3.setSpokenResponseLong("Ok, I am turning left.");
-        clientMatch3.setWrittenResponse("Ok, I'm turning left.");
-        clientMatch3.setWrittenResponseLong("Ok, I am turning left.");
+        MoveLeft.setSpokenResponse("moving left.");
+        MoveLeft.setSpokenResponseLong("moving left.");
+        MoveLeft.setWrittenResponse("moving left.");
+        MoveLeft.setWrittenResponseLong("moving left.");
+        MoveLeft.setAutoListen(true);
 
-        ObjectNode result3Node = nodeFactory.objectNode();
-        result3Node.put("Intent", "TURN_LEFT");
-        clientMatch3.setResult(result3Node);
+        ObjectNode MoveLeftNode = nodeFactory.objectNode();
+        MoveLeftNode.put("Intent", "MOVE_LEFT");
+        MoveLeft.setResult(MoveLeftNode);
 
-        clientMatchList.add(clientMatch3);
-//        clientMatchList.add(rightCmd);
+        clientMatchList.add(MoveLeft);
+//
+        //-------------------------Move right
+        ClientMatch MoveRight = new ClientMatch();
+        MoveRight.setExpression("(\"go\"|\"move\").\"right\"");
+
+        MoveRight.setSpokenResponse("moving right.");
+        MoveRight.setSpokenResponseLong("moving right");
+        MoveRight.setWrittenResponse("moving right.");
+        MoveRight.setWrittenResponseLong("moving right");
+        MoveRight.setAutoListen(true);
+
+        ObjectNode MoveRightNode = nodeFactory.objectNode();
+        MoveRightNode.put("Intent", "MOVE_RIGHT");
+        MoveRight.setResult(MoveRightNode);
+
+        clientMatchList.add(MoveRight);
+
+        //------------------------Move upward
+        ClientMatch TiltUp = new ClientMatch();
+        TiltUp.setExpression("(\"go\"|\"tilt\"|\"look\"|\"pan\").(\"up\"|\"upward\")");
+
+        TiltUp.setSpokenResponse("tilting up.");
+        TiltUp.setSpokenResponseLong("tilting upward");
+        TiltUp.setWrittenResponse("tilting up.");
+        TiltUp.setWrittenResponseLong("tilting upward");
+        TiltUp.setAutoListen(true);
+
+        ObjectNode TiltUpNode = nodeFactory.objectNode();
+        TiltUpNode.put("Intent", "TILT_UP");
+        TiltUp.setResult(TiltUpNode);
+
+        clientMatchList.add(TiltUp);
+
+        //-----------------------Move downward
+        ClientMatch TiltDown = new ClientMatch();
+        TiltDown.setExpression("(\"go\"|\"tilt\"|\"look\"|\"pan\").(\"down\"|\"downward\")");
+
+        TiltDown.setSpokenResponse("tilting down.");
+        TiltDown.setSpokenResponseLong("tilting downward");
+        TiltDown.setWrittenResponse("tilting down.");
+        TiltDown.setWrittenResponseLong("tilting downward");
+        TiltDown.setAutoListen(true);
+
+        ObjectNode TiltDownNode = nodeFactory.objectNode();
+        TiltDownNode.put("Intent", "TILT_DOWN");
+        TiltDown.setResult(TiltDownNode);
+
+        clientMatchList.add(TiltDown);
+
+        //-------------------------Stop/Pause/Freeze
+        ClientMatch Stop = new ClientMatch();
+        Stop.setExpression("(\"stop\"|\"pause\"|\"freeze\")");
+
+        Stop.setSpokenResponse("Stopping");
+        Stop.setSpokenResponseLong("Stopping.");
+        Stop.setWrittenResponse("Stopping.");
+        Stop.setWrittenResponseLong("Stopping.");
+        Stop.setAutoListen(true);
+
+        ObjectNode StopNode = nodeFactory.objectNode();
+        StopNode.put("Intent", "STOP");
+        Stop.setResult(StopNode);
+
+        clientMatchList.add(Stop);
+
+        //-------------------------Zoom in
+        ClientMatch ZoomIn = new ClientMatch();
+        ZoomIn.setExpression("(\"zoom\").(\"in\")");
+
+        ZoomIn.setSpokenResponse("Zooming In");
+        ZoomIn.setSpokenResponseLong("Zooming In.");
+        ZoomIn.setWrittenResponse("Zooming In.");
+        ZoomIn.setWrittenResponseLong("Zooming In.");
+        ZoomIn.setAutoListen(true);
+
+        ObjectNode ZoomInNode = nodeFactory.objectNode();
+        ZoomInNode.put("Intent", "ZOOMIN");
+        ZoomIn.setResult(ZoomInNode);
+
+        clientMatchList.add(ZoomIn);
+
+        //-------------------------Zoom out
+        ClientMatch ZoomOut = new ClientMatch();
+        ZoomOut.setExpression("(\"zoom\").(\"out\")");
+
+        ZoomOut.setSpokenResponse("Zooming Out");
+        ZoomOut.setSpokenResponseLong("Zooming Out.");
+        ZoomOut.setWrittenResponse("Zooming Out.");
+        ZoomOut.setWrittenResponseLong("Zooming Out.");
+        ZoomOut.setAutoListen(true);
+
+        ObjectNode ZoomOutNode = nodeFactory.objectNode();
+        ZoomOutNode.put("Intent", "ZOOMOUT");
+        ZoomOut.setResult(ZoomOutNode);
+
+        clientMatchList.add(ZoomIn);
+
+
+        //----------------------Pan counter-clockwise
+        ClientMatch PanCCW = new ClientMatch();
+        PanCCW.setExpression("(\"pan\"|\"yaw\"|\"rotate\"|\"turn\"|\"look\").((\"counter\".\"clockwise\")|\"left\")");
+
+        PanCCW.setSpokenResponse("panning left.");
+        PanCCW.setSpokenResponseLong("panning left");
+        PanCCW.setWrittenResponse("panning left.");
+        PanCCW.setWrittenResponseLong("panning left");
+        PanCCW.setAutoListen(true);
+
+        ObjectNode PanCCWNode = nodeFactory.objectNode();
+        PanCCWNode.put("Intent", "PAN_CCW");
+        PanCCW.setResult(PanCCWNode);
+
+        clientMatchList.add(PanCCW);
+
+        //----------------------Pan clockwise
+        ClientMatch PanCW = new ClientMatch();
+        PanCW.setExpression("(\"pan\"|\"yaw\"|\"rotate\"|\"turn\"|\"look\").(\"clockwise\"|\"right\")");
+
+        PanCW.setSpokenResponse("panning right.");
+        PanCW.setSpokenResponseLong("panning right");
+        PanCW.setWrittenResponse("panning right.");
+        PanCW.setWrittenResponseLong("panning right");
+        PanCW.setAutoListen(true);
+
+        ObjectNode PanCWNode = nodeFactory.objectNode();
+        PanCWNode.put("Intent", "PAN_CW");
+        PanCW.setResult(PanCWNode);
+
+        clientMatchList.add(PanCW);
 
         // add the list of matches to the request info object
         requestInfo.setClientMatches(clientMatchList);

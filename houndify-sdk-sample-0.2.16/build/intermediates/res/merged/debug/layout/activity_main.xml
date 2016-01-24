@@ -5,30 +5,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:text="ESTOP"
+        android:layout_gravity="center"
+        android:onClick="onEstop"/>
     <com.houndify.sample.MjpegView
         android:id="@+id/mv"
         android:layout_width="fill_parent"
-        android:layout_height="400dp"/>
+        android:layout_height="300dp"/>
 
     <TextView
         android:id="@+id/msgText"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="top|left"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
         android:text = "Awaiting Message"/>
 
     <TextView
         android:id="@+id/msgText2"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="top|left"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
         android:text = "Awaiting Message"/>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="top|left"
         android:text="Awaiting search"
         android:textIsSelectable="true"/>
 
