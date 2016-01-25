@@ -16,18 +16,18 @@
         <dex dex="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/pre-dexed/debug/okhttp-2.4.0-d1f25f1c2cb30e95b8dd551d0f8d1b02b3fbe0c6.jar" />
     </item>
     <item
-        jar="/Users/gabriellemerritt/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.4.0/d6a66c7a5f01cf500377bd669507a08cfeba882a/jackson-annotations-2.4.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="d6a66c7a5f01cf500377bd669507a08cfeba882a">
-        <dex dex="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/pre-dexed/debug/jackson-annotations-2.4.0-3f45ca46d152b8fc0216139df72fb05365838e50.jar" />
-    </item>
-    <item
         jar="/Users/gabriellemerritt/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.4.0/5b72bf48563ea8410e650de14aa33ff69a3e8c35/okio-1.4.0.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="5b72bf48563ea8410e650de14aa33ff69a3e8c35">
         <dex dex="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/pre-dexed/debug/okio-1.4.0-a48e83ed652dbde044a9ef7975bb2e0144babd0f.jar" />
+    </item>
+    <item
+        jar="/Users/gabriellemerritt/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.4.0/d6a66c7a5f01cf500377bd669507a08cfeba882a/jackson-annotations-2.4.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d6a66c7a5f01cf500377bd669507a08cfeba882a">
+        <dex dex="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/pre-dexed/debug/jackson-annotations-2.4.0-3f45ca46d152b8fc0216139df72fb05365838e50.jar" />
     </item>
     <item
         jar="/Users/gabriellemerritt/.gradle/caches/modules-2/files-2.1/com.koushikdutta.async/androidasync/2.1.2/38ff23022839229e8923a7b2d4ec6650aa338513/androidasync-2.1.2.jar"
@@ -37,18 +37,18 @@
         <dex dex="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/pre-dexed/debug/androidasync-2.1.2-1332fe75fef780a493fb1b9e16a38968d5fed65f.jar" />
     </item>
     <item
-        jar="/Users/gabriellemerritt/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-2c2a10b6df509f3f7730e37341363d7be9b1c04f.jar" />
-    </item>
-    <item
         jar="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/exploded-aar/hound.android/hound-sdk/0.2.15/jars/classes.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="7b10f2bd9c5cf76dd93b7af0dc07551621f29d71">
         <dex dex="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/pre-dexed/debug/classes-400363159f0d76f90af949285e4c68647e2e87cc.jar" />
+    </item>
+    <item
+        jar="/Users/gabriellemerritt/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-2c2a10b6df509f3f7730e37341363d7be9b1c04f.jar" />
     </item>
     <item
         jar="/Users/gabriellemerritt/.gradle/caches/modules-2/files-2.1/hound.android/java-utils/1.0.0/3d712040e34d671352b908c204f7a256ac25e466/java-utils-1.0.0.jar"
@@ -58,13 +58,6 @@
         <dex dex="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/pre-dexed/debug/java-utils-1.0.0-b927dd11d5f06903fcdcf48b225a735384fac78c.jar" />
     </item>
     <item
-        jar="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/libs/usbserial.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="270f48d80a2a28c193840e18c520ce298eafe6d1">
-        <dex dex="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/pre-dexed/debug/usbserial-74000f8b673f37205591f247237074dc0a07a3ed.jar" />
-    </item>
-    <item
         jar="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/exploded-aar/soundhound.android/vad/1.2.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.2"
@@ -72,11 +65,11 @@
         <dex dex="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/pre-dexed/debug/classes-ee6db41048f0c7196bc53fd1534ae2bec3f69b26.jar" />
     </item>
     <item
-        jar="/Users/gabriellemerritt/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.4.0/473e063d6396a1ff6e4b9c7943e604291ce18b07/jackson-databind-2.4.0.jar"
+        jar="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/libs/usbserial.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="473e063d6396a1ff6e4b9c7943e604291ce18b07">
-        <dex dex="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/pre-dexed/debug/jackson-databind-2.4.0-9c6c1ccd4246a892b1a70a8f98692005b1b32428.jar" />
+        sha1="270f48d80a2a28c193840e18c520ce298eafe6d1">
+        <dex dex="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/pre-dexed/debug/usbserial-74000f8b673f37205591f247237074dc0a07a3ed.jar" />
     </item>
     <item
         jar="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/exploded-aar/soundhound.android/speex/1.3.0/jars/classes.jar"
@@ -84,6 +77,13 @@
         revision="23.0.2"
         sha1="6de73f4fe9cb23e03d2baed8b5586ea4e1fa45eb">
         <dex dex="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/pre-dexed/debug/classes-ddbbd945ddf9830fa55a661901e12959993371c8.jar" />
+    </item>
+    <item
+        jar="/Users/gabriellemerritt/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.4.0/473e063d6396a1ff6e4b9c7943e604291ce18b07/jackson-databind-2.4.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="473e063d6396a1ff6e4b9c7943e604291ce18b07">
+        <dex dex="/Users/gabriellemerritt/pennApps/autoDirector/houndify-sdk-sample-0.2.16/build/intermediates/pre-dexed/debug/jackson-databind-2.4.0-9c6c1ccd4246a892b1a70a8f98692005b1b32428.jar" />
     </item>
     <item
         jar="/Users/gabriellemerritt/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.4.0/1e33fd4cca6c4a9bf3d2f638cabb504a5b5c989d/jackson-core-2.4.0.jar"

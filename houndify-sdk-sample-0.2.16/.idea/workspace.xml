@@ -32,14 +32,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0da1eb96-ed49-498d-8f41-d938293bada4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/MainActivity$1$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/MainActivity$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/MainActivity$1.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/MainActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/MainActivity$2.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/MainActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/MainActivity$3.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/MainActivity$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/MainActivity$DoRead.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/MainActivity$DoRead.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/MainActivity$TextToSpeechMgr.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/MainActivity$TextToSpeechMgr.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/MainActivity.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/StatefulRequestInfoFactory.class" afterPath="$PROJECT_DIR$/build/intermediates/classes/debug/com/houndify/sample/StatefulRequestInfoFactory.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/pre-dexed/debug/androidasync-2.1.2-1332fe75fef780a493fb1b9e16a38968d5fed65f.jar" afterPath="$PROJECT_DIR$/build/intermediates/pre-dexed/debug/androidasync-2.1.2-1332fe75fef780a493fb1b9e16a38968d5fed65f.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/pre-dexed/debug/classes-400363159f0d76f90af949285e4c68647e2e87cc.jar" afterPath="$PROJECT_DIR$/build/intermediates/pre-dexed/debug/classes-400363159f0d76f90af949285e4c68647e2e87cc.jar" />
@@ -65,11 +58,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/pre-dexed/debug/usbserial-74000f8b673f37205591f247237074dc0a07a3ed.jar" afterPath="$PROJECT_DIR$/build/intermediates/pre-dexed/debug/usbserial-74000f8b673f37205591f247237074dc0a07a3ed.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/houndify/sample/MainActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/houndify/sample/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/houndify/sample/StatefulRequestInfoFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/houndify/sample/StatefulRequestInfoFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout/activity_main.xml" afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/houndify-sdk-sample-0.2.16.iml" afterPath="$PROJECT_DIR$/houndify-sdk-sample-0.2.16.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="houndify-sdk-sample-0.2.16.iws" />
@@ -94,14 +83,14 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/houndify/sample/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.26697892">
-              <caret line="469" column="16" selection-start-line="469" selection-start-column="16" selection-end-line="469" selection-end-column="16" />
+            <state vertical-scroll-proportion="-0.31615925">
+              <caret line="112" column="40" selection-start-line="112" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#startPhraseSpotting#0;class#MainActivity#0" expanded="false" />
                 <element signature="class#DoRead#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#9611#10728#0" expanded="true" />
-                <element signature="e#10727#10728#0" expanded="true" />
+                <element signature="e#9609#10726#0" expanded="true" />
+                <element signature="e#10725#10726#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1242,6 +1231,7 @@
     <property name="android.project.structure.last.selected" value="houndify-sdk-sample-0.2.16" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="autoDirector" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager" selected="Android Application.houndify-sdk-sample-0.2.16">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -1418,7 +1408,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="48" y="22" width="1400" height="854" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1426,11 +1416,11 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32806325" sideWeight="0.41857144" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32806325" sideWeight="0.41642857" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38603425" sideWeight="0.4705449" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32806325" sideWeight="0.5814286" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32806325" sideWeight="0.58357143" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1441,8 +1431,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15428571" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3254282" sideWeight="0.7764286" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15428571" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3254282" sideWeight="0.7721428" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1478,8 +1468,8 @@
             <element signature="imports" expanded="true" />
             <element signature="method#startPhraseSpotting#0;class#MainActivity#0" expanded="false" />
             <element signature="class#DoRead#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#9611#10728#0" expanded="true" />
-            <element signature="e#10727#10728#0" expanded="true" />
+            <element signature="e#9609#10726#0" expanded="true" />
+            <element signature="e#10725#10726#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1570,8 +1560,8 @@
             <element signature="imports" expanded="true" />
             <element signature="method#startPhraseSpotting#0;class#MainActivity#0" expanded="false" />
             <element signature="class#DoRead#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#9611#10728#0" expanded="true" />
-            <element signature="e#10727#10728#0" expanded="true" />
+            <element signature="e#9609#10726#0" expanded="true" />
+            <element signature="e#10725#10726#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1777,14 +1767,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/houndify/sample/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26697892">
-          <caret line="469" column="16" selection-start-line="469" selection-start-column="16" selection-end-line="469" selection-end-column="16" />
+        <state vertical-scroll-proportion="-0.31615925">
+          <caret line="112" column="40" selection-start-line="112" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#startPhraseSpotting#0;class#MainActivity#0" expanded="false" />
             <element signature="class#DoRead#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#9611#10728#0" expanded="true" />
-            <element signature="e#10727#10728#0" expanded="true" />
+            <element signature="e#9609#10726#0" expanded="true" />
+            <element signature="e#10725#10726#0" expanded="true" />
           </folding>
         </state>
       </provider>

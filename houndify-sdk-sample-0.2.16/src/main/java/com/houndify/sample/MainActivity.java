@@ -110,7 +110,7 @@ public class MainActivity extends Activity  {
 
 //        String URL = "http://158.130.109.221:8080/video";
 //        String URL = "http://158.130.110.0:8080/video";
-         String URL = "http://158.130.109.54:8080/video";
+         String URL = "http://130.91.51.49:8080/video";
 
         /**
          * usb sending
@@ -396,9 +396,9 @@ public class MainActivity extends Activity  {
                         }
                         msgText2.setText(Float.toString(pan_rad));
 
-                        float[] msg_data_96 = {lin_slow_vel, lin_pos}; //linear
-                        float[] msg_data_97 = {slow_vel, tilt_rad}; //pan
-                        float[] msg_data_98 = {slow_vel, pan_rad}; //tilt
+//                        float[] msg_data_96 = {lin_slow_vel, lin_pos}; //linear
+                        float[] msg_data_97 = {slow_vel, pan_rad}; //pan
+//                        float[] msg_data_98 = {slow_vel, pan_rad}; //tilt
 //                        sendMessage((byte)170, msg_data_96); //linear
                         sendMessage((byte)172, msg_data_97); //pan
 //                        sendMessage((byte)172, msg_data_98); //tilt
@@ -409,9 +409,9 @@ public class MainActivity extends Activity  {
                             pan_rad = pan_rad - (0.25f * PI); //45 degrees
                         }
                         msgText2.setText(Float.toString(pan_rad));
-                        float[] msg_data_96 = {lin_slow_vel, lin_pos}; //linear
-                        float[] msg_data_97 = {slow_vel, tilt_rad}; //pan
-                        float[] msg_data_98 = {slow_vel, pan_rad}; //tilt
+//                        float[] msg_data_96 = {lin_slow_vel, lin_pos}; //linear
+                        float[] msg_data_97 = {slow_vel, pan_rad}; //pan
+//                        float[] msg_data_98 = {slow_vel, pan_rad}; //tilt
 //                        sendMessage((byte)170, msg_data_96); //linear
                         sendMessage((byte)172, msg_data_97); //pan
 //                        sendMessage((byte)172, msg_data_98); //tilt
@@ -422,10 +422,10 @@ public class MainActivity extends Activity  {
                             tilt_rad = tilt_rad + (0.25f * PI); //45 degrees
                         }
                         msgText2.setText(Float.toString(tilt_rad));
-
-                        float[] msg_data_96 = {lin_slow_vel, lin_pos}; //linear
-                        float[] msg_data_97 = {slow_vel, tilt_rad}; //pan
-                        float[] msg_data_98 = {slow_vel, pan_rad}; //tilt
+//
+//                        float[] msg_data_96 = {lin_slow_vel, lin_pos}; //linear
+//                        float[] msg_data_97 = {slow_vel, tilt_rad}; //pan
+                        float[] msg_data_98 = {slow_vel, tilt_rad}; //tilt
 //                        sendMessage((byte)170, msg_data_96); //linear
 //                        sendMessage((byte)171, msg_data_97); //pan
                         sendMessage((byte)171, msg_data_98); //tilt
@@ -437,9 +437,9 @@ public class MainActivity extends Activity  {
                         }
                         msgText2.setText(Float.toString(tilt_rad));
 
-                        float[] msg_data_96 = {lin_slow_vel, lin_pos}; //linear
-                        float[] msg_data_97 = {slow_vel, tilt_rad}; //pan
-                        float[] msg_data_98 = {slow_vel, pan_rad}; //tilt
+//                        float[] msg_data_96 = {lin_slow_vel, lin_pos}; //linear
+//                        float[] msg_data_97 = {slow_vel, tilt_rad}; //pan
+                        float[] msg_data_98 = {slow_vel, tilt_rad}; //tilt
 //                        sendMessage((byte)170, msg_data_96); //linear
 //                        sendMessage((byte)171, msg_data_97); //pan
                         sendMessage((byte)171, msg_data_98); //tilt
